@@ -1,6 +1,30 @@
-## Background Tips package
-[![OS X Build Status](https://travis-ci.org/atom/background-tips.svg?branch=master)](https://travis-ci.org/atom/background-tips) [![Windows Build Status](https://ci.appveyor.com/api/projects/status/2utcugietl5vjc7w/branch/master?svg=true)](https://ci.appveyor.com/project/Atom/background-tips/branch/master) [![Dependency Status](https://david-dm.org/atom/background-tips.svg)](https://david-dm.org/atom/background-tips)
+## Background Tips package with Thera
 
-Displays tips about Atom in the background when there are no open editors.
 
-![Screen shot](https://f.cloud.github.com/assets/69169/1796267/c3de038c-6a60-11e3-8bf8-36f45684902c.png)
+Displays tips about Thera in the background when there are no open editors.can be use a web page in the background.
+
+![Screen shot](https://img.alicdn.com/tps/TB1yOTbPVXXXXcrXVXXXXXXXXXX-1701-1223.png)
+
+## Referenced
+[background-tips](https://github.com/atom/background-tips)
+
+## License
+
+    Copyright (c) 2017 Alibaba
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of
+    this software and associated documentation files (the "Software"), to deal in the
+    Software without restriction, including without limitation the rights to use, copy,
+    modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
+    and to permit persons to whom the Software is furnished to do so, subject to the
+    following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+    PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
