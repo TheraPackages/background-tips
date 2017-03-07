@@ -1,0 +1,53 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+background-tips {
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  height: 100% !important;
+  width: 100% !important;
+  -webkit-box-sizing: 0px !important; // for ios-safari, android
+  -moz-box-sizing:0px !important; //for ff
+  box-sizing:0px !important; //for other
+
+  .background-message {
+    -webkit-user-select: none;
+    cursor: default;
+    height: 100% !important;
+    width: 100% !important;
+
+    .message {
+      padding: 0 !important;
+      //padding: 0 @component-padding*3;
+      height: 100% !important;
+      width: 100% !important;
+      opacity: 0;
+      transition: opacity .3s ease-in-out;
+      &.fade-in {
+        opacity: 1;
+      }
+
+      .keystroke {
+        //border: 2px solid;
+        //padding: 0 @component-padding/2;
+        //border-radius: @component-border-radius * 3;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+    }
+  }
+}
+
+
+.tinybox_1 {
+  position: absolute;/*这里一定要设置*/ 
+  z-index:99999;
+  height: 100%;
+  width: 100%;
+}
