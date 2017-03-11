@@ -87,7 +87,7 @@ class BackgroundTipsElement extends HTMLElement
 
     renderTip: (str) ->
         path = require('path')
-        templatepath  = path.join(atom.packages.loadedPackages['background-tips'].path, 'lib', 'tipsback.html')
+        templatepath  = path.join(atom.packages.loadedPackages['thera-background-tips'].path, 'lib', 'tipsback.html')
 
         "
         <div class='tinybox_1'></div>
@@ -100,4 +100,4 @@ class BackgroundTipsElement extends HTMLElement
         return binding for binding in bindings when binding.selector.indexOf(process.platform) isnt -1
         return bindings[0]
 
-module.exports = document.registerElement 'background-tips', prototype: BackgroundTipsElement.prototype
+module.exports = document.registerElement 'thera-background-tips', prototype: BackgroundTipsElement.prototype
