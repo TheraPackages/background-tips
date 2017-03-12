@@ -1,199 +1,360 @@
 <!DOCTYPE html>
-
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="Cache-Control" content="max-age=7200" />
 	<meta http-equiv="Expires" content="Mon, 20 Jul 2027 23:00:00 GMT" />
 	<title>html5背景</title>
 
-	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="./jquery.min.js"></script>
+	<script type="text/javascript" src="./the.js"></script>
+	
 	<style>
-			.dingwei {
-				padding: 10px;
-				color: #FFFFFF;
-				width: 900px;
-				height: 300px;
-				display: block;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				font-family: 'PT Sans Narrow', sans-serif;
-				margin-left: -300px;
-				margin-top: -300px;
-				color: #ffffff;
-				font-size: 58px;
-				line-height: 58px;
+		body, html {
+			width: 100%;
+			height: 100%;
+			background-color: #000;
+			color: #FFFFFF;
+		}
 
-			}
+		.center {
+			width:100%;
+			height:100%;
+			  
+			/* Firefox */
+			display:-moz-box;
+			-moz-box-pack:center;
+			-moz-box-align:center;
 
-			.dingwei2{
-				padding: 10px;
-				color: #FFFFFF;
-				width: 900px;
-				height: 300px;
-				display: block;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				font-family: 'PT Sans Narrow', sans-serif;
-				margin-left: -250px;
-				margin-top: -250px;
-				color: #ffffff;
-				font-size: 28px;
-				line-height: 58px;
+			/* Safari, Chrome, and Opera */
+			display:-webkit-box;
+			-webkit-box-pack:center;
+			-webkit-box-align:center;
 
-			}
+			/* W3C */
+			display:box;
+			box-pack:center;
+			box-align:center;			
+		}
 
-			@keyframes fade-in {
-		    0% {opacity: 0;}/*初始状态 透明度为0*/
-		    40% {opacity: 0.5;}/*过渡状态 透明度为0*/
-		    100% {opacity: 1;}/*结束状态 透明度为1*/
-			}
-
-			@-webkit-keyframes fade-in {/*针对webkit内核*/
-			    0% {opacity: 0;}
-			    40% {opacity: 0.5;}
-			    100% {opacity: 1;}
-			}
-
-			.wrapper {
-			    animation: fade-in;/*动画名称*/
-			    animation-duration: 0.5s;/*动画持续时间*/
-			    -webkit-animation:fade-in 0.5s;/*针对webkit内核*/
-			}
-
+		.toast {
+			width: 100%;
+			height: 100%;
+			background: transparent;
+			position: absolute;
+			left: 0; 
+			right: 0; 
+			top: 0; 
+			bottom: 0;
 			
+			/* Firefox */
+			display:-moz-box;
+			-moz-box-pack:center;
+			-moz-box-align:center;
 
+			/* Safari, Chrome, and Opera */
+			display:-webkit-box;
+			-webkit-box-pack:center;
+			-webkit-box-align:center;
 
-		</style>
+			/* W3C */
+			display:box;
+			box-pack:center;
+			box-align:center;
+		}
+
+		@keyframes fade-in {
+	    	0% {opacity: 0;} /* 初始状态 透明度为0 */
+	    	40% {opacity: 0.5;} /* 过渡状态 透明度为0 */
+	    	100% {opacity: 1;} /* 结束状态 透明度为1 */
+		}
+
+		@-webkit-keyframes fade-in {/* 针对webkit内核 */
+		    0% {opacity: 0;}
+		    40% {opacity: 0.5;}
+		    100% {opacity: 1;}
+		}
+
+		.wrapper {
+		    animation: fade-in; /* 动画名称 */
+		    animation-duration: 0.5s; /* 动画持续时间 */
+		    -webkit-animation:fade-in 0.5s; /* 针对webkit内核 */
+		}
+
+		.title {
+			line-height: 58px;
+			font-size: 58px;
+		}
+
+		.instruction {
+			line-height: 28px;
+			font-size: 28px;
+		}
+
+		.tipfont {
+			font-family: 'PT Sans Narrow', sans-serif;
+			color: #ffffff;
+		}
+
+	</style>
+		
 </head>
 
 <body>
+
 	<script type="text/javascript">
-	document.body.style.overflow='hidden';
-	document.documentElement.style.overflow='hidden'
+	document.body.style.overflow = 'hidden';
+	document.documentElement.style.overflow = 'hidden';
 
-		$(function() { if(!window.ActiveXObject && !!document.createElement('canvas').getContext) { $.getScript('http://im-img.qq.com/pcqq/js/200/cav.js?_=1428576021379', function() { var t = { width: 1.5, height: 1.5, depth: 10, segments: 12, slices: 6, xRange: 0.8, yRange: 0.1, zRange: 1, ambient: '#525252', diffuse: '#FFFFFF', speed: 0.0002 }; var G = { count: 2, xyScalar: 1, zOffset: 100, ambient: '#000000', diffuse: '#2e3441', speed: 0.001, gravity: 1200, dampening: 0.95, minLimit: 10, maxLimit: null, minDistance: 20, maxDistance: 400, autopilot: false, draw: false, bounds: CAV.Vector3.create(), step: CAV.Vector3.create(Math.randomInRange(0.2, 1), Math.randomInRange(0.2, 1), Math.randomInRange(0.2, 1)) }; var m = 'canvas'; var E = 'svg'; var x = { renderer: m }; var i, n = Date.now(); var L = CAV.Vector3.create(); var k = CAV.Vector3.create(); var z = document.getElementById('container'); var w = document.getElementById('anitOut'); var D, I, h, q, y; var g; var r;
+	function load() {
+		if (!window.ActiveXObject && !!document.createElement('canvas').getContext) {
+			var t = {
+				width: 1.5, height: 1.5, 
+				depth: 10, 
+				segments: 12, 
+				slices: 6, 
+				xRange: 0.8, yRange: 0.1, zRange: 1, 
+				ambient: '#525252', 
+				diffuse: '#FFFFFF', 
+				speed: 0.0002
+			}; 
 
-					function C() { F();
-						p();
-						s();
-						B();
-						v();
-						K(z.offsetWidth, z.offsetHeight);
-						o() }
+			var G = { 
+				count: 2, 
+				xyScalar: 1, 
+				zOffset: 100, 
+				ambient: '#000000', 
+				diffuse: '#2e3441', 
+				speed: 0.001, 
+				gravity: 1200, 
+				dampening: 0.95, 
+				minLimit: 10, maxLimit: null, 
+				minDistance: 20, maxDistance: 400, 
+				autopilot: false, 
+				step: CAV.Vector3.create(Math.randomInRange(0.2, 1), Math.randomInRange(0.2, 1), Math.randomInRange(0.2, 1)) 
+			}; 
 
-					function F() { g = new CAV.CanvasRenderer();
-						H(x.renderer) }
+			var cvsName = 'canvas'; 
+			var E = 'svg'; 
+			var x = { 
+				renderer: cvsName 
+			}; 
 
-					function H(N) { if(D) { w.removeChild(D.element) } switch(N) {
-							case m:
-								D = g; break } D.setSize(z.offsetWidth, z.offsetHeight);
-						w.appendChild(D.element) }
+			var currTime, baseTime = Date.now(); 
+			var vec2 = CAV.Vector3.create(); 
+			var depthVec = CAV.Vector3.create(); 
+			var container = document.getElementById('container'); 
+			var anitOut = document.getElementById('anitOut'); 
+			var renderDisplay, scene, h, plane, y; var cvsRenderer; var r;
 
-					function p() { I = new CAV.Scene() }
+			function main() { 
+				createRenderer();
+				createScene();
+				buildUpScene();
+				buildLight();
+				initResizeListener();
+				setSize(container.offsetWidth, container.offsetHeight);
+				start();
+			}
 
-					function s() { I.remove(h);
-						D.clear();
-						q = new CAV.Plane(t.width * D.width, t.height * D.height, t.segments, t.slices);
-						y = new CAV.Material(t.ambient, t.diffuse);
-						h = new CAV.Mesh(q, y);
-						I.add(h); var N, O; for(N = q.vertices.length - 1; N >= 0; N--) { O = q.vertices[N];
-							O.anchor = CAV.Vector3.clone(O.position);
-							O.step = CAV.Vector3.create(Math.randomInRange(0.2, 1), Math.randomInRange(0.2, 1), Math.randomInRange(0.2, 1));
-							O.time = Math.randomInRange(0, Math.PIM2) } }
+			function createRenderer() { 
+				cvsRenderer = new CAV.CanvasRenderer();
+				setupRender(x.renderer) 
+			}
 
-					function B() { var O, N; for(O = I.lights.length - 1; O >= 0; O--) { N = I.lights[O];
-							I.remove(N) } D.clear(); for(O = 0; O < G.count; O++) { N = new CAV.Light(G.ambient, G.diffuse);
-							N.ambientHex = N.ambient.format();
-							N.diffuseHex = N.diffuse.format();
-							I.add(N);
-							N.mass = Math.randomInRange(0.5, 1);
-							N.velocity = CAV.Vector3.create();
-							N.acceleration = CAV.Vector3.create();
-							N.force = CAV.Vector3.create() } }
+			function setupRender(cvs) { 
+				if(renderDisplay) { 
+					anitOut.removeChild(renderDisplay.element) 
+				} 
+				
+				switch(cvs) {
+					case cvsName:
+						renderDisplay = cvsRenderer; 
+						break 
+				} 
 
-					function K(O, N) { D.setSize(O, N);
-						CAV.Vector3.set(L, D.halfWidth, D.halfHeight);
-						s() }
+				renderDisplay.setSize(container.offsetWidth, container.offsetHeight);
+				anitOut.appendChild(renderDisplay.element) 
+			}
 
-					function o() { i = Date.now() - n;
-						u();
-						M();
-						requestAnimationFrame(o) }
+			function createScene() { 
+				scene = new CAV.Scene() 
+			}
 
-					function u() { var Q, P, O, R, T, V, U, S = t.depth / 2;
-						CAV.Vector3.copy(G.bounds, L);
-						CAV.Vector3.multiplyScalar(G.bounds, G.xyScalar);
-						CAV.Vector3.setZ(k, G.zOffset); for(R = I.lights.length - 1; R >= 0; R--) { T = I.lights[R];
-							CAV.Vector3.setZ(T.position, G.zOffset); var N = Math.clamp(CAV.Vector3.distanceSquared(T.position, k), G.minDistance, G.maxDistance); var W = G.gravity * T.mass / N;
-							CAV.Vector3.subtractVectors(T.force, k, T.position);
-							CAV.Vector3.normalise(T.force);
-							CAV.Vector3.multiplyScalar(T.force, W);
-							CAV.Vector3.set(T.acceleration);
-							CAV.Vector3.add(T.acceleration, T.force);
-							CAV.Vector3.add(T.velocity, T.acceleration);
-							CAV.Vector3.multiplyScalar(T.velocity, G.dampening);
-							CAV.Vector3.limit(T.velocity, G.minLimit, G.maxLimit);
-							CAV.Vector3.add(T.position, T.velocity) } for(V = q.vertices.length - 1; V >= 0; V--) { U = q.vertices[V];
-							Q = Math.sin(U.time + U.step[0] * i * t.speed);
-							P = Math.cos(U.time + U.step[1] * i * t.speed);
-							O = Math.sin(U.time + U.step[2] * i * t.speed);
-							CAV.Vector3.set(U.position, t.xRange * q.segmentWidth * Q, t.yRange * q.sliceHeight * P, t.zRange * S * O - S);
-							CAV.Vector3.add(U.position, U.anchor) } q.dirty = true }
+			function buildUpScene() { 
+				console.log("buildUpScene");
+				scene.remove(h);
+				renderDisplay.clear();
+				plane = new CAV.Plane(t.width * renderDisplay.width, t.height * renderDisplay.height, t.segments, t.slices);
+				y = new CAV.Material(t.ambient, t.diffuse);
+				h = new CAV.Mesh(plane, y);
+				scene.add(h); 
+				var rindex, vertex; 
+				for (rindex = plane.vertices.length - 1; rindex >= 0; rindex--) { 
+					vertex = plane.vertices[rindex];
+					vertex.anchor = CAV.Vector3.clone(vertex.position);
+					vertex.step = CAV.Vector3.create(Math.randomInRange(0.2, 1), Math.randomInRange(0.2, 1), Math.randomInRange(0.2, 1));
+					vertex.seed = Math.randomInRange(0, Math.PIM2) 
+				} 
+			}
 
-					function M() { D.render(I) }
+			function buildLight() { 
+				var i, light; 
 
-					function J(O) { var Q, N, S = O; var P = function(T) { for(Q = 0, l = I.lights.length; Q < l; Q++) { N = I.lights[Q];
-								N.ambient.set(T);
-								N.ambientHex = N.ambient.format() } }; var R = function(T) { for(Q = 0, l = I.lights.length; Q < l; Q++) { N = I.lights[Q];
-								N.diffuse.set(T);
-								N.diffuseHex = N.diffuse.format() } }; return { set: function() { P(S[0]);
-								R(S[1]) } } }
+				for(i = scene.lights.length - 1; i >= 0; i--) { 
+					light = scene.lights[i];
+					scene.remove(light) 
+				} 
+				
+				renderDisplay.clear(); 
+				
+				for (i = 0; i < G.count; i++) { 
+					light = new CAV.Light(G.ambient, G.diffuse);
+					light.ambientHex = light.ambient.format();
+					light.diffuseHex = light.diffuse.format();
+					light.mass = Math.randomInRange(0.5, 1);
+					light.velocity = CAV.Vector3.create();
+					light.acceleration = CAV.Vector3.create();
+					light.force = CAV.Vector3.create() 
+					scene.add(light);
+				} 
+			}
 
-					function v() { window.addEventListener('resize', j) }
+			function setSize(w, h) { 
+				renderDisplay.setSize(w, h);
+				//CAV.Vector3.set(vec2, renderDisplay.halfWidth, renderDisplay.halfHeight);
+				CAV.Vector3.set(vec2, w, h);
+				//buildUpScene(); 
+			}
 
-					function A(N) { CAV.Vector3.set(k, N.x, D.height - N.y);
-						CAV.Vector3.subtract(k, L) }
+			function start() { 
+				currTime = Date.now() - baseTime;
+				setModel();
+				render();
+				requestAnimationFrame(start) 
+			}
 
-					function j(N) { K(z.offsetWidth, z.offsetHeight);
-						M() } C() }) } else { alert('调用cav.js失败') } });
+			function setModel() { 
+				var offX, offY, offZ, rindex, light, vertex, halfDepth = t.depth / 2;
 
+				CAV.Vector3.setZ(depthVec, G.zOffset); 
 
-					window.onload = function() {
-					var HH = 0;
-					var mm = 0;
-					var ss = 0;
-					var str = '';
-					var timer = setInterval(function() {
-						str = "";
-						if(++ss == 60) {
-							if(++mm == 60) {
-								HH++;
-								mm = 0;
-							}
-							ss = 0;
-						}
-						str += HH < 10 ? "0" + HH : HH;
-						str += ":";
-						str += mm < 10 ? "0" + mm : mm;
-						str += ":";
-						str += ss < 10 ? "0" + ss : ss;
-						document.getElementById("d").innerHTML ="WORKING FOR " + str;
-						document.getElementById("subd").innerHTML = "The compassion came from Thera group"
-						document.getElementById("d").classList.add('wrapper');
-						document.getElementById("subd").classList.add('wrapper');
+				for (rindex = scene.lights.length - 1; rindex >= 0; rindex--) { 
+					light = scene.lights[rindex];
+					CAV.Vector3.setZ(light.position, G.zOffset); 
 
-					}, 1000);
+					var N = Math.clamp(CAV.Vector3.distanceSquared(light.position, depthVec), G.minDistance, G.maxDistance);
+					var W = G.gravity * light.mass / N;
+					CAV.Vector3.subtractVectors(light.force, depthVec, light.position);
+					CAV.Vector3.normalise(light.force);
+					CAV.Vector3.multiplyScalar(light.force, W);
+					CAV.Vector3.set(light.acceleration);
+					CAV.Vector3.add(light.acceleration, light.force);
+					CAV.Vector3.add(light.velocity, light.acceleration);
+					CAV.Vector3.multiplyScalar(light.velocity, G.dampening);
+					CAV.Vector3.limit(light.velocity, G.minLimit, G.maxLimit);
+					CAV.Vector3.add(light.position, light.velocity) 
+				}
+
+				for (var i = plane.vertices.length - 1; i >= 0; i--) { 
+					vertex = plane.vertices[i];
+					offX = Math.sin(vertex.seed + vertex.step[0] * currTime * t.speed);
+					offY = Math.cos(vertex.seed + vertex.step[1] * currTime * t.speed);
+					offZ = Math.sin(vertex.seed + vertex.step[2] * currTime * t.speed);
+					CAV.Vector3.set(vertex.position, t.xRange * plane.segmentWidth * offX, t.yRange * plane.sliceHeight * offY, t.zRange * halfDepth * offZ - halfDepth);
+					CAV.Vector3.add(vertex.position, vertex.anchor);
+				} 
+				
+				plane.dirty = true 
+			}
+
+			function render() { 
+				renderDisplay.render(scene);
+			}
+
+			function use2Light(configs) { 
+				var i, light, cfgs = configs; 
+				
+				var ambientLights = function(cfg) { 
+					for (i = 0, l = scene.lights.length; i < l; i++) { 
+						light = scene.lights[i];
+						light.ambient.set(cfg);
+						light.ambientHex = light.ambient.format(); 
+					} 
 				};
+
+				var diffuseLights = function(cfg) { 
+					for (i = 0, l = scene.lights.length; i < l; i++) { 
+						light = scene.lights[i];
+						light.diffuse.set(cfg);
+						light.diffuseHex = light.diffuse.format() 
+					} 
+				};
+
+				return { 
+					set: function() {
+						ambientLights(cfgs[0]);
+						diffuseLights(cfgs[1]);
+					} 
+				};
+			}
+
+			function initResizeListener() { 
+				window.addEventListener('resize', onResize);
+			}
+
+			function onResize() { 
+				setSize(container.offsetWidth, container.offsetHeight);
+				render();
+			} 
+
+			main();
+		} else { 
+			alert('调用cav.js失败') 
+		} 
+	}
+
+	window.onload = function() {
+		var HH = 0;
+		var mm = 0;
+		var ss = 0;
+		var str = '';
+		var timer = setInterval(function() {
+			str = "";
+			if (++ss == 60) {
+				if (++mm == 60) {
+					HH++;
+					mm = 0;
+				}
+				ss = 0;
+			}
+			
+			str += HH < 10 ? "0" + HH : HH;
+			str += ":";
+			str += mm < 10 ? "0" + mm : mm;
+			str += ":";
+			str += ss < 10 ? "0" + ss : ss;
+
+			document.getElementById("title").innerHTML = "WORKING FOR " + str;
+			document.getElementById("instruction").innerHTML = "The compassion came from Thera group"
+			document.getElementById("title").classList.add('wrapper');
+			document.getElementById("instruction").classList.add('wrapper');
+		}, 1000);
+
+		load();
+	};
+
 	</script>
-		<div id="container" class="wrapper" style="width:100%;height:1400px;">
-			<div id="anitOut"></div>
-		</div>
-		<span id="d" class="dingwei"></span>
-		<span id="subd" class="dingwei2"></span>
 
+	<div id="container" class="center">
+		<div id="anitOut"></div>
+	</div>
 
+	<div class="toast">
+		<div>
+			<center><span id="title" class="title tipfont"></span></center>
+			<center><span id="instruction" class="instruction tipfont"></span></center>
+		<div>
+	</div>
 </body>
-
 </html>
