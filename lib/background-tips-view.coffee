@@ -19,9 +19,8 @@ class BackgroundTipsElement extends HTMLElement
 
         window.addEventListener 'resize', => 
             paneView = atom.views.getView(atom.workspace.getActivePane())
-            chidren = paneView.childNodes[1]
             bg = paneView.querySelector('#thera-background')
-            bg.height = paneView.offsetHeight
+            bg.height = paneView.offsetHeight if bg
 
     destroy: ->
         @disposables.dispose()
