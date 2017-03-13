@@ -1,38 +1,33 @@
 _ = require 'underscore-plus'
 {CompositeDisposable} = require 'atom'
-Tips = require './tips'
 $ = window.$ = window.jQuery = require 'jquery'
-
-
-Template = """
-             <ul class="background-message">
-               <li class="message"></li>
-             </ul>
-           """
 
 module.exports =
 class BackgroundTipsElement extends HTMLElement
-    StartDelay: 1000
-    DisplayDuration: 10000
-    FadeDuration: 300
-
+    disposables: null
+    
     createdCallback: ->
-        @index = -1
-
         @disposables = new CompositeDisposable
         @disposables.add atom.workspace.onDidAddPane => @updateVisibility()
         @disposables.add atom.workspace.onDidDestroyPane => @updateVisibility()
         @disposables.add atom.workspace.onDidChangeActivePaneItem => @updateVisibility()
-        @startTimeout = setTimeout((=> @start()), @StartDelay)
+        @start()
 
     attachedCallback: ->
-        @innerHTML = Template
-        @message = @querySelector('.message')
+        paneView = atom.views.getView(atom.workspace.getActivePane())
+        @innerHTML = @fullContent() paneView.offsetHeight
+
+        window.addEventListener 'resize', => 
+            paneView = atom.views.getView(atom.workspace.getActivePane())
+            chidren = paneView.childNodes[1]
+            bg = paneView.querySelector('#thera-background')
+            bg.height = paneView.offsetHeight
 
     destroy: ->
-        @stop()
         @disposables.dispose()
-        @destroyed = true
+
+    shouldBeAttached: ->
+        atom.workspace.getPanes().length is 1 and not atom.workspace.getActivePaneItem()?
 
     attach: ->
         paneView = atom.views.getView(atom.workspace.getActivePane())
@@ -43,61 +38,19 @@ class BackgroundTipsElement extends HTMLElement
     detach: ->
         @remove()
 
+    start: ->
+        @updateVisibility()
+
     updateVisibility: ->
         if @shouldBeAttached()
-            @start()
+            @attach()
         else
-            @stop()
+            @detach()
 
-    shouldBeAttached: ->
-        atom.workspace.getPanes().length is 1 and not atom.workspace.getActivePaneItem()?
-
-    start: ->
-        return if not @shouldBeAttached() or @interval?
-        @renderTips()
-        @randomizeIndex()
-        @attach()
-        @showNextTip()
-        #@interval = setInterval((=> @showNextTip()), @DisplayDuration)
-
-    stop: ->
-        @remove()
-        clearInterval(@interval) if @interval?
-        clearTimeout(@startTimeout)
-        clearTimeout(@nextTipTimeout)
-        @interval = null
-
-    randomizeIndex: ->
-        len = Tips.length
-        @index = Math.round(Math.random() * len) % len
-
-    showNextTip: ->
-        @index = ++@index % Tips.length
-        @message.classList.remove('fade-in')
-        @nextTipTimeout = setTimeout =>
-            @message.innerHTML = Tips[@index]
-            @message.classList.add('fade-in')
-        , @FadeDuration
-
-    renderTips: ->
-        return if @tipsRendered
-        for tip, i in Tips
-            Tips[i] = @renderTip(tip)
-        @tipsRendered = true
-
-    renderTip: (str) ->
+    fullContent: ->
         path = require('path')
-        templatepath  = path.join(atom.packages.loadedPackages['thera-background-tips'].path, 'lib', 'tipsback.html')
-
-        "
-        <div class='tinybox_1'></div>
-        <iframe runat='server' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='no' allowtransparency='yes'  width='100%' height='1400px'  src='#{templatepath}'></iframe>
-
-        "
-
-    getKeyBindingForCurrentPlatform: (bindings) ->
-        return unless bindings?.length
-        return binding for binding in bindings when binding.selector.indexOf(process.platform) isnt -1
-        return bindings[0]
+        templatepath  = path.join(atom.packages.loadedPackages['thera-background-tips'].path, 'lib', 'tipsback.html')        
+        itemCreate = (h) ->
+            "<iframe id='thera-background' runat='server' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='no' allowtransparency='yes'  width='100%' height='#{h}'  src='#{templatepath}'></iframe>"
 
 module.exports = document.registerElement 'thera-background-tips', prototype: BackgroundTipsElement.prototype
