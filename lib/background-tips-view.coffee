@@ -16,11 +16,14 @@ class BackgroundTipsElement extends HTMLElement
     attachedCallback: ->
         paneView = atom.views.getView(atom.workspace.getActivePane())
         @innerHTML = @fullContent() paneView.offsetHeight
+        window.addEventListener 'resize', => @updateSize()
+            
 
-        window.addEventListener 'resize', => 
-            paneView = atom.views.getView(atom.workspace.getActivePane())
-            bg = paneView.querySelector('#thera-background')
-            bg.height = paneView.offsetHeight if bg
+    updateSize: ->
+        paneView = atom.views.getView(atom.workspace.getActivePane())
+        mainFrame = atom.views.getView atom.workspace
+        bg = paneView.querySelector('#thera-background')
+        bg.height = mainFrame.verticalAxis.offsetHeight if bg
 
     destroy: ->
         @disposables.dispose()
@@ -30,9 +33,11 @@ class BackgroundTipsElement extends HTMLElement
 
     attach: ->
         paneView = atom.views.getView(atom.workspace.getActivePane())
+        mainFrame = atom.views.getView atom.workspace
         top = paneView.querySelector('.item-views')?.offsetTop ? 0
         @style.top = top + 'px'
         paneView.appendChild(this)
+        @updateSize()
 
     detach: ->
         @remove()
