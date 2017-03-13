@@ -318,6 +318,9 @@
 		var mm = 0;
 		var ss = 0;
 		var str = '';
+		var title = document.getElementById("title");
+		var instruction = document.getElementById("instruction");
+
 		var timer = setInterval(function() {
 			str = "";
 			if (++ss == 60) {
@@ -334,10 +337,10 @@
 			str += ":";
 			str += ss < 10 ? "0" + ss : ss;
 
-			document.getElementById("title").innerHTML = "WORKING FOR " + str;
-			document.getElementById("instruction").innerHTML = "The passion of Thera group"
-			document.getElementById("title").classList.add('wrapper');
-			document.getElementById("instruction").classList.add('wrapper');
+			title.innerHTML = "WORKING FOR " + str;
+			instruction.innerHTML = "The passion of Thera group"
+			title.classList.add('wrapper');
+			instruction.classList.add('wrapper');
 		}, 1000);
 
 		load();
