@@ -8,19 +8,26 @@ class BackgroundTipsElement extends HTMLElement
 
   createdCallback: ->
     @disposables = new CompositeDisposable
-    @disposables.add atom.workspace.onDidAddPane => @updateVisibility()
-    @disposables.add atom.workspace.onDidDestroyPane => @updateVisibility()
-    @disposables.add atom.workspace.onDidChangeActivePaneItem => @updateVisibility()
+    @disposables.add atom.workspace.getCenter().onDidAddPaneItem =>
+      console.log 'onDidAddPane'
+      @updateVisibility()
+    @disposables.add atom.workspace.getCenter().onDidDestroyPaneItem =>
+      console.log 'onDidDestroyPane'
+      @updateVisibility()
+    @disposables.add atom.workspace.getCenter().onDidChangeActivePaneItem =>
+      console.log 'onDidChangeActivePaneItem'
+      @updateVisibility()
+
     @start()
 
   attachedCallback: ->
-    paneView = atom.views.getView(atom.workspace.getActivePane())
+    paneView = atom.views.getView(atom.workspace.getCenter().getActivePane())
     @innerHTML = @fullContent() paneView.offsetHeight
     window.addEventListener 'resize', => @updateSize()
 
 
   updateSize: ->
-    paneView = atom.views.getView(atom.workspace.getActivePane())
+    paneView = atom.views.getView(atom.workspace.getCenter().getActivePane())
     mainFrame = atom.views.getView atom.workspace
     bg = paneView.querySelector('#thera-background')
     bg.height = mainFrame.verticalAxis.offsetHeight if bg
@@ -29,10 +36,17 @@ class BackgroundTipsElement extends HTMLElement
     @disposables.dispose()
 
   shouldBeAttached: ->
-    atom.workspace.getPanes().length is 1 and not atom.workspace.getActivePaneItem()?
+    panes = atom.workspace.getCenter().getPanes()
+    cnt = 0
+    for pane in panes
+      continue unless pane
+      items = pane.items
+      continue unless items
+      cnt += items.length
+    return cnt == 0
 
   attach: ->
-    paneView = atom.views.getView(atom.workspace.getActivePane())
+    paneView = atom.views.getView(atom.workspace.getCenter().getActivePane())
     mainFrame = atom.views.getView atom.workspace
     top = paneView.querySelector('.item-views')?.offsetTop ? 0
     @style.top = top + 'px'
@@ -46,6 +60,7 @@ class BackgroundTipsElement extends HTMLElement
     @updateVisibility()
 
   updateVisibility: ->
+    # debugger
     if @shouldBeAttached()
       @attach()
     else
