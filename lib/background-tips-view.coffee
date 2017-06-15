@@ -9,13 +9,13 @@ class BackgroundTipsElement extends HTMLElement
   createdCallback: ->
     @disposables = new CompositeDisposable
     @disposables.add atom.workspace.getCenter().onDidAddPaneItem =>
-      console.log 'onDidAddPane'
+      # console.log 'onDidAddPane'
       @updateVisibility()
     @disposables.add atom.workspace.getCenter().onDidDestroyPaneItem =>
-      console.log 'onDidDestroyPane'
+      # console.log 'onDidDestroyPane'
       @updateVisibility()
     @disposables.add atom.workspace.getCenter().onDidChangeActivePaneItem =>
-      console.log 'onDidChangeActivePaneItem'
+      # console.log 'onDidChangeActivePaneItem'
       @updateVisibility()
 
     @start()
